@@ -1,35 +1,36 @@
 import csv
-#import firebase_admin
-#from firebase_admin import credentials, firestore
+import firebase_admin
+from firebase_admin import credentials, firestore
 
 # Initialize Firebase
 # Initialize Firebase
-'''
+
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
-'''
+
+
 
 def calc(data):
-    cars = [999][5]
-    for i, row in enumerate(data):
-        count1 = 0
+    cars = [][1000]
+    count = 0
+    for row in data:
         max = row[11]
         if row[3] == 'Driver':
-            cars[count1].append(row)
-
-            for j, row2 in enumerate(data):
+            cars[count].append(row)
+            print(cars)
+            for row2 in data:
                 if max == 0:
                     break
                 elif row2[3] == 'Passenger':
+                    print("d")
                     num = row2[10]
                     if (
                         max >= num and row[2] == row2[2]
                         and row[8] == row2[8] and row[9] == row2[9]
                     ):
-                        cars[count1].append(row2)
-                        count1 += 1
-                        print(cars[0])
+                        cars.append(row2)
+                        count += 1
                 else: 
                     continue
         else:
@@ -77,7 +78,7 @@ def parse():
            #Append
 
             data.append(row)
-            print(data[i])  # Print the current row
+            #print(data[i])  # Print the current row
 
             calc(data)
 
