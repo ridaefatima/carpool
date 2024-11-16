@@ -4,12 +4,43 @@ from firebase_admin import credentials, firestore
 
 # Initialize Firebase
 # Initialize Firebase
+
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 
-def main():
+
+def calc(data):
+    cars = [][1000]
+    count = 0
+    for row in data:
+        max = row[11]
+        if row[3] == 'Driver':
+            cars[count].append(row)
+            print(cars)
+            for row2 in data:
+                if max == 0:
+                    break
+                elif row2[3] == 'Passenger':
+                    print("d")
+                    num = row2[10]
+                    if (
+                        max >= num and row[2] == row2[2]
+                        and row[8] == row2[8] and row[9] == row2[9]
+                    ):
+                        cars.append(row2)
+                        count += 1
+                else: 
+                    continue
+        else:
+            continue
+
+
+
+def parse():
+
+
     data = []
     # Open the file using the csv module
     with open("MEC2024Data.csv", "r") as f:
@@ -47,7 +78,9 @@ def main():
            #Append
 
             data.append(row)
-            print(data[i])  # Print the current row
+            #print(data[i])  # Print the current row
+
+            calc(data)
 
             # Send each row to Firebase Firestore
             doc_ref = db.collection("parsed_csv_data").document(f"row_{i}")
@@ -57,5 +90,7 @@ def main():
 
     print(f"Total rows processed: {len(data)}")
 
-# Call the main function
-main()
+# Call the parse function
+parse()
+
+    
