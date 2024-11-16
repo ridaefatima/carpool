@@ -5,7 +5,6 @@ import Cards from '../components/Cards';
 function Homepage() {
   return (
     <div>
-      <Navbar/>
       <Cards/>
 
     </div>

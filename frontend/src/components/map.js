@@ -1,35 +1,61 @@
 import React, { useEffect, useRef } from 'react';
-import { useState } from 'react';
 import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 const MapComponent = () => {
-  const mapContainer = useRef(null);  // Ref to the map container
+  const mapContainer = useRef(null);
 
   useEffect(() => {
-    // Initialize the map
+    if (!mapContainer.current) return;
+
+    // Initialize map with zoom controls enabled
     const map = L.map(mapContainer.current, {
-      center: [43.7, -79.42],  // Latitude and Longitude for Toronto (or any coordinates you want)
-      zoom: 13,                 // Default zoom level
+      center: [43.7, -79.42],
+      zoom: 13,
+      zoomControl: true,     // Enable zoom controls (+/- buttons)
+      dragging: true,        // Enable dragging
+      scrollWheelZoom: true, // Enable scroll wheel zoom
+      doubleClickZoom: true, // Enable double click zoom
+      boxZoom: true,         // Enable box zoom
+      keyboard: true,        // Enable keyboard navigation
+      touchZoom: true,       // Enable touch zoom
     });
 
-    // Add a tile layer (e.g., OpenStreetMap)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    // Add zoom control to top-right corner
+    L.control.zoom({
+      position: 'topright'
     }).addTo(map);
 
-    // Optionally, you can add a zoom control or other map features here
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19,
+      minZoom: 1,
+      tileSize: 256,
+      zoomOffset: 0,
+      detectRetina: true
+    }).addTo(map);
 
-    // Cleanup on unmount
+    // Force a map invalidation and redraw
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
+
     return () => {
       map.remove();
     };
   }, []);
 
   return (
-    <div 
-      ref={mapContainer} 
-      style={{ height: '500px', width: '100%' }}  // Set map height and width
-    />
+    <div className="w-full h-screen flex items-center justify-center">
+      <div 
+        ref={mapContainer} 
+        className="w-[500px] h-[500px] relative z-0"
+        style={{
+          border: '1px solid #ccc',
+          backgroundColor: '#f8f8f8'
+        }}
+      />
+    </div>
   );
 };
 
