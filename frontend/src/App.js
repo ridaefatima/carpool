@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+// app.js
+import React, { useState } from 'react';
+import MapComponent from './components/map';  // Import MapComponent from map.js
 
-function App() {
+const App = () => {
+  // Set initial coordinates and zoom level
+  const [center, setCenter] = useState([43.7, -79.42]); // Example: Toronto coordinates
+  const [zoom, setZoom] = useState(13);  // Default zoom level
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>My Map</h1>
+      {/* Render MapComponent with center and zoom props */}
+      <MapComponent center={center} zoom={zoom} />
     </div>
   );
-}
+};
 
 export default App;
