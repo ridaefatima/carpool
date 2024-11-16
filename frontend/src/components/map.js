@@ -1,25 +1,23 @@
 import React, { useEffect, useRef } from 'react';
-import { useState } from 'react';
 import L from 'leaflet';
 
-const MapComponent = () => {
-  const mapContainer = useRef(null);  // Ref to the map container
+const Map = ({ style }) => {  // Accept style as a prop
+  const mapContainer = useRef(null);  // Reference for the map container
 
   useEffect(() => {
-    // Initialize the map
+    // Initialize map
     const map = L.map(mapContainer.current, {
-      center: [43.7, -79.42],  // Latitude and Longitude for Toronto (or any coordinates you want)
-      zoom: 13,                 // Default zoom level
+      center: [40.679404, -73.997512],  // Set default center (Carroll Gardens)
+      zoom: 13,  // Set default zoom level
     });
 
-    // Add a tile layer (e.g., OpenStreetMap)
+    // Add OpenStreetMap tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
-    // Optionally, you can add a zoom control or other map features here
-
-    // Cleanup on unmount
+    // Cleanup map on unmount
     return () => {
       map.remove();
     };
@@ -28,9 +26,13 @@ const MapComponent = () => {
   return (
     <div 
       ref={mapContainer} 
-      style={{ height: '500px', width: '100%' }}  // Set map height and width
+      style={{
+        height: '50px',  // Set a very small height for the map
+        width: '50px',   // Set width as 50px to make it small
+        ...style,        // Allow additional custom styles to override default ones
+      }}
     />
   );
 };
 
-export default MapComponent;
+export default Map;
