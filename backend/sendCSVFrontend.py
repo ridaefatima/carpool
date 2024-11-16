@@ -22,7 +22,7 @@ def main():
             row[6] = int(time[0])*60 + int(time[1])
             row[7] = int(row[7])
 
-            ###----------Boolean Conversion-------------###
+            ###--------------Boolean Conversion-------------###
             if (row[8] == 'TRUE'):
                 row[8] = True
             else:
