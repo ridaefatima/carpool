@@ -9,9 +9,6 @@ const Cards = () => {
         <div className='max-w-[1240px] mx-auto grid md:grid-cols-1 gap-8'>
         <div className='w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300 bg-[#386e4f80]'>
                 <p className='text-center text-1xl font-bold text-white my-6'>Rida needs help</p>
-                <button className='bg-[#ffffff] w-[200px] rounded-md font-medium mx-auto my-6 px-6 py-3'>
-                <Link to='https://devpost.com/software/soluhacks' target='_blank' rel='noopener noreferrer'>Click Here</Link>
-                </button>
                 <Map/>
             </div> 
         </div>
