@@ -18,24 +18,20 @@ const Navbar = () => {
                         <Link to='/'>Home</Link>
                     </li>
                     <li className='p-4'>
-                        <Link to='/map'>Map</Link>
+                        <Link to='/projects'>Projects</Link>
                     </li>
                     <li className='p-4'></li>
                 </ul>
-                <div>
-                {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
-
-                </div>
+                <div></div>
                 <div onClick={handleNav} className='block md:hidden'>
                     {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
                 </div>
-                <ul className={nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500' : 'ease-in-out duration-500 fixed left-[-100%]'}>
+                <ul className={ 'fixed left-0 top-0 w-[20%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500'}>
                     <h1 className='w-full text-3xl font-bold text-[#00d59a] m-4'>S . K . S</h1>
                     <li className='p-4 border-b border-gray-600'>
-                        <Link to='/'>Home</Link>
+                        
                     </li>
                     <li className='p-4 border-b border-gray-600'>
-                        <Link to='/map'>Map</Link>
                     </li>
                     <li className='p-4 border-b border-gray-600'></li>
                 </ul>
