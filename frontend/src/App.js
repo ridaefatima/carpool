@@ -1,20 +1,18 @@
-// app.js
-import React, { useState } from 'react';
-import MapComponent from './components/map';  // Import MapComponent from map.js
+import React from 'react';
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import Cards from './components/Cards';
+import Map from './pages/Map';
+import Homepage from './pages/Homepage';
 
-const App = () => {
-  // Set initial coordinates and zoom level
-  const [center, setCenter] = useState([43.7, -79.42]); // Example: Toronto coordinates
-  const [zoom, setZoom] = useState(13);  // Default zoom level
-
+function App() {
   return (
-    <div>
-      <h1>My Map</h1>
-      {/* Render MapComponent with center and zoom props */}
-      <MapComponent center={center} zoom={zoom} />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage/>} />
+        <Route path="/Map" element={<Map/>} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;
-
