@@ -2,7 +2,7 @@ import csv
 
 def main():
     # Initialize empty lists for each column
-
+    print ("Radical File Reader")
     data = []
 
     # Open the file using the csv module
